@@ -1,0 +1,44 @@
+name: Claims review
+
+# Re-runs the review whenever content or the approved library changes.
+# It only reports. It never edits content, approves claims, or commits.
+on:
+  push:
+    paths: ["assets/**", "claims/approved.toml"]
+  pull_request:
+    paths: ["assets/**", "claims/approved.toml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: Review assets
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -n "$ANTHROPIC_API_KEY" ]; then
+            claimcheck review
+          else
+            echo "::warning::ANTHROPIC_API_KEY is not set; running phrase matching only."
+            claimcheck review --offline
+          fi
+      - name: Add report to the job summary
+        if: always()
+        run: cat reviews/latest.md >> "$GITHUB_STEP_SUMMARY" || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: claims-review
+          path: |
+            reviews/
+            claims/proposed.toml

@@ -1,0 +1,62 @@
+# Planted problems in the sample assets: the answer key for `claimcheck eval`.
+#
+# A finding counts as catching an expected issue when its quote contains
+# `quote_contains` (case-insensitive) in the same asset. `claim` is the claim
+# the issue should be tied to; "none" means no approved claim covers it, so
+# it should be reported as unsupported (and proposed as a new claim).
+
+[[expected]]
+asset = "article.md"
+quote_contains = "will cut your review time by 40%"
+claim = "C2"
+type = "unsupported"
+note = "Drops the pilot qualifier and promises the result to every reader."
+
+[[expected]]
+asset = "article.md"
+quote_contains = "solo creators"
+claim = "C5"
+type = "drift"
+note = "Positions Lumen beyond 3-20 person B2B tech teams."
+
+[[expected]]
+asset = "linkedin-post.md"
+quote_contains = "fact-checks every draft"
+claim = "C1"
+type = "contradiction"
+note = "Lumen flags missing sources; it does not verify truth."
+
+[[expected]]
+asset = "linkedin-post.md"
+quote_contains = "cut review cycles in half"
+claim = "C2"
+type = "contradiction"
+note = "Pilot showed 40%, not 50%, and only in a pilot."
+
+[[expected]]
+asset = "linkedin-post.md"
+quote_contains = "Microsoft Word"
+claim = "C3"
+type = "contradiction"
+note = "Word is on the roadmap, not shipped."
+
+[[expected]]
+asset = "website-copy.md"
+quote_contains = "auto-publishes approved drafts"
+claim = "C4"
+type = "contradiction"
+note = "Lumen never publishes."
+
+[[expected]]
+asset = "website-copy.md"
+quote_contains = "SOC 2 Type II certified"
+claim = "none"
+type = "unsupported"
+note = "No approved claim covers certification."
+
+[[expected]]
+asset = "website-copy.md"
+quote_contains = "enterprise-wide content organisation"
+claim = "C5"
+type = "drift"
+note = "Positions Lumen for enterprise-wide organisations."

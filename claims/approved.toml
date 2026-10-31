@@ -1,0 +1,69 @@
+# Approved claims library.
+#
+# Only claims in this file count as approved. The reviewer never writes here:
+# new claims it finds land in claims/proposed.toml, and they move into this
+# file only when you run `claimcheck approve <id>`.
+#
+# These five claims are a worked sample for a fictional product, "Lumen".
+# Replace them with your own claims.
+#
+# Fields:
+#   id           Stable identifier the reviewer cites in findings.
+#   category     capability | metric | integration | governance | positioning
+#   statement    The approved wording of the claim.
+#   evidence     What backs the claim. Content may not go beyond this.
+#   limits       Qualifiers that must stay attached when the claim is used.
+#   prohibited   Overstatements that are always violations. They are matched
+#                literally (case-insensitive) even with no API key.
+
+[[claims]]
+id = "C1"
+category = "capability"
+statement = "Lumen flags statements in a draft that lack a cited source."
+evidence = "Product behaviour: source-check rule set, release 2.4."
+limits = [
+  "Lumen flags missing sources; it does not verify whether a statement is true.",
+  "Flags are suggestions for an editor to review.",
+]
+prohibited = ["fact-checks", "fact-check every", "guarantees accuracy", "guaranteed accurate", "verifies every claim"]
+
+[[claims]]
+id = "C2"
+category = "metric"
+statement = "In a 2026 pilot with four content teams, median review time fell from 3.0 days to 1.8 days, a 40% reduction."
+evidence = "Pilot report, Q2 2026, four teams, 212 drafts."
+limits = [
+  "Always state that the result comes from a pilot.",
+  "Do not generalise the result to all teams or present it as typical.",
+]
+prohibited = ["in half", "50%", "halves", "every team", "any team will"]
+
+[[claims]]
+id = "C3"
+category = "integration"
+statement = "Lumen integrates with Google Docs and Notion."
+evidence = "Shipped integrations list, release 2.4."
+limits = [
+  "Microsoft Word and Confluence are on the roadmap, not shipped.",
+]
+prohibited = ["microsoft word", "ms word", "confluence"]
+
+[[claims]]
+id = "C4"
+category = "governance"
+statement = "A human editor approves every change. Lumen suggests edits; it never publishes."
+evidence = "Product design principle; no publish permission is requested by any integration."
+limits = [
+  "Never describe Lumen as publishing, auto-publishing, or pushing content live.",
+]
+prohibited = ["auto-publish", "publishes for you", "publishes automatically", "pushes live", "no human needed"]
+
+[[claims]]
+id = "C5"
+category = "positioning"
+statement = "Lumen is built for B2B technology content teams of 3 to 20 people."
+evidence = "Positioning statement, approved 2026-09."
+limits = [
+  "Do not position Lumen for solo creators, consumer brands, or enterprise-wide content organisations.",
+]
+prohibited = ["for everyone", "any size", "solo creators", "global enterprises", "enterprise-wide"]

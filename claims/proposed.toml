@@ -1,0 +1,9 @@
+# Proposed claims awaiting approval.
+#
+# The reviewer appends claims here when content asserts something the
+# approved library does not cover. Nothing here counts as approved.
+# Review each one, fill in its evidence, then run:
+#
+#   claimcheck approve P1
+#
+# or delete the entry to reject it.
